@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         document.querySelectorAll('.tag-number').forEach(tag => {
+            tag.classList.remove('hover:bg-green-500', 'hover:text-white');
             tag.classList.add('cursor-not-allowed');
         });
     }
@@ -80,6 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         document.querySelectorAll('.tag-number').forEach(tag => {
+            tag.classList.add('hover:bg-green-500', 'hover:text-white');
             tag.classList.remove('cursor-not-allowed');
         });
     }

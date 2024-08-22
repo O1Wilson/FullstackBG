@@ -286,8 +286,14 @@
         <div class="bg-white rounded-lg shadow-lg p-6 max-w-6xl w-full h-5/6 overflow-auto">
             <!-- Header -->
             <h2 class="text-2xl font-semibold mb-4">Generate Map Grid</h2>
-            <!-- Pop-up Content Area -->
-            <div class="flex space-x-6">
+            <!-- Tab Navigation -->
+            <div class="flex border-b border-gray-300 mb-4">
+                <button class="tab px-4 py-2 font-medium text-gray-700 hover:text-gray-900" data-tab="generateTab">Generate</button>
+                <button class="tab px-4 py-2 font-medium text-gray-700 hover:text-gray-900" data-tab="customTab">Custom</button>
+                <button class="tab px-4 py-2 font-medium text-gray-700 hover:text-gray-900" data-tab="presetTab">Preset</button>
+            </div>
+            <!-- Tab Content -->
+            <div id="generateTab" class="tab-content flex space-x-6">
                 <!-- Active Table Section -->
                 <div class="flex-1">
                     <h3 class="text-lg font-medium mb-2">Active Table</h3>
@@ -318,18 +324,49 @@
                     </div>
                 </div>
             </div>
+            <div id="customTab" class="tab-content hidden">
+                <div class="grid grid-rows-6 grid-cols-5 gap-4 justify-items-center items-center">
+                    <!-- Content for Custom tab goes here -->
+                    <!-- Example data -->
+                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
+                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
+                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
+                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
+                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
+                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
+                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
+                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
+                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
+                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
+                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
+                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
+                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
+                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
+                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
+                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
+                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
+                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
+                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
+                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
+                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
+                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
+                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
+                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
+                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div> 
+                </div>
+            </div>
+    
+            <div id="presetTab" class="tab-content hidden">
+                <!-- Content for Preset tab goes here -->
+            </div>
         </div>
     </div>
     <!-- Testing button  -->
     <button id="customizeButton" class="p-2 bg-blue-500 text-white rounded">Customize Board</button>
 </main>
-<footer>
-</footer>
 <script src="js/styles/navbarProfile.js"></script>
 <script src="js/styles/userstyles.js"></script>
 <script src="js/game/setup/configWindowHandler.js"></script>
 <script src="js/game/setup/boardConfigCustomize.js"></script>
 <script src="js/game/setup/boardConfigGenerate.js"></script>
-<script src="js/game/setup/boardConfigPreset.js"></script>
-</body>
-</html>
+<script src="js/game/setup/boardConfigPreset.js"></script></body></html>

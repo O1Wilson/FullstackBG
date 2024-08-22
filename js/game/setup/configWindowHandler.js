@@ -53,6 +53,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    // Select all tabs and tab content sections
+    const tabs = document.querySelectorAll('.tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    // Function to show a specific tab content and hide others
+    function showTabContent(tabId) {
+        tabContents.forEach(content => {
+            content.classList.add('hidden');
+        });
+        document.getElementById(tabId).classList.remove('hidden');
+    }
+
+    // Event listener for tab clicks
+    tabs.forEach(tab => {
+        tab.addEventListener('click', (event) => {
+            const tabId = event.target.getAttribute('data-tab');
+            showTabContent(tabId);
+        });
+    });
+
+    // Initialize the first tab as active
+    if (tabs.length > 0) {
+        const firstTab = tabs[0];
+        const defaultTabId = firstTab.getAttribute('data-tab');
+        showTabContent(defaultTabId);
+    }
+});
+
 // Handles switching between the different setup categories.
 //
 // Add code for generating board from setup
