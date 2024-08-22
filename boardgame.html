@@ -299,38 +299,46 @@
                     </div>
                 </div>
             </div>
-            <div id="customTab" class="tab-content hidden">
-                <div class="grid grid-rows-6 grid-cols-5 gap-4 justify-items-center items-center">
+            <div id="customTab" class="tab-content hidden flex flex-col space-y-4 items-center">
+                <!-- Search Bar -->
+                <div class="relative mb-4 w-full max-w-md">
+                    <input type="text" id="customSearch" placeholder="Search custom items..." class="w-full p-2 pr-10 border border-gray-300 rounded-full focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5 text-gray-500 absolute right-3 top-3">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1117.65 6.65a7.5 7.5 0 010 10.6z" />
+                    </svg>
+                </div>
+                <!-- Grid Container -->
+                <div class="grid grid-rows-6 grid-cols-5 gap-4 justify-items-center">
                     <!-- Example data -->
-                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
-                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
-                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
-                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
-                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
-                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
-                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
-                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
-                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
-                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
-                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
-                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
-                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
-                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
-                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
-                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
-                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
-                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
-                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
-                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
-                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
-                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
-                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
-                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div>
-                    <div class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden"></div> 
+                    <div id="bartleyhouse" class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden" data-alias="bartley house,bartly house,bartely house,the bartley house,the bartly house,the bartely house,the bartleys,the bartelys,the bartlys,the bartley's,the bartely's,the bartly's,tommy's house,tommys house"></div>
+                    <div id="som"class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden" data-alias="som discord server,society of merchants,som server, som chat,som call,discord server"></div>
+                    <div id="mhs"class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden" data-alias="midlothian highschool,midlothian high school,hell"></div>
+                    <div id="skeld"class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden" data-alias="amongus,among us,amog us,amogus,the skeld,sussy baka,vented,electrical,imposter"></div>
+                    <div id="whiterun"class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden" data-alias="skyrim"></div>
+                    <div id="attstad"class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden" data-alias="at&t stadium,at and t stadium,atant stadium,atandt stadium,at8t stadium,cowboys"></div>
+                    <div id="utaustin"class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden" data-alias="austin,ut austin,college,lhr twerk day"></div>
+                    <div id="showbiz"class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden" data-alias="showbiz theater,showbiz theatre,showbiz cinema waxahachie,waxahachie theatre,waxahachie theater,waxahachie showbiz cinema theater"></div>
+                    <div id="chuckecheese"class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden" data-alias="chuck e cheese"></div>
+                    <div id="theshire"class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden" data-alias="the shire,shire,hobbits,lord of the rings,lotr"></div>
+                    <div id="midlopark"class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden" data-alias="the midlothian community park,midlothian community park,midlothian park,the spot"></div>
+                    <div id="galveston"class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden" data-alias="the beach,galveston beach"></div>
+                    <div id="sixflags"class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden" data-alias="six flags,rollercoaster park,amusement park"></div>
+                    <div id="aacenter"class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden" data-alias="the american airlines center stadium, american airlines center stadium"></div>
+                    <div id="hooters"class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden" data-alias="owen's ideal woman,owen's ideal women,brayden's ideal woman,brayden's ideal women,tommy's ideal woman,tommy's ideal women,twin peaks"></div>
+                    <div id="hibachio"class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden" data-alias="hibachio grill"></div>
+                    <div id="brandedburger"class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden" data-alias="branded burger"></div>
+                    <div id="thewhitehouse"class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden" data-alias="the white house,white house"></div>
+                    <div id="ravenswoodbluff"class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden" data-alias="ravenswood bluff,ravens wood bluff,raven's wood bluff"></div>
+                    <div id="greatbritain"class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden" data-alias="great britain,britain,uk,the uk,the u.k.,u.k.,chewsday innit,innit,hell"></div>
+                    <div id="anicentgreece"class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden" data-alias="greece,rome,aincent greece,aincent rome,ancient rome"></div>
+                    <div id="bikinibottom"class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden" data-alias="the bikini bottom,bikini bottom,spongebob bikini bottom,sponge bob bikini bottom"></div>
+                    <div id="de_office"class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden" data-alias="office,csoffice,cs office,csgo office,cs2 office,the office"></div>
+                    <div id="summonersrift"class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden" data-alias="league of legends,lol,summoners rift,summoner's rift,aram"></div>
+                    <div id="lukesclassroom"class="bg-gray-300 h-24 w-36 rounded-md overflow-hidden" data-alias="lukes classroom,luke's classroom,classroom"></div> 
                 </div>
             </div>
     
-            <div id="presetTab" class="tab-content hidden">
+            <div id="presetTab" class="tab-content hidden tab-content flex space-x-6">
                 <!-- Content for Preset tab goes here -->
             </div>
         </div>
