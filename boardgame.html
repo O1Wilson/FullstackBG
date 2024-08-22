@@ -5,32 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <style>
-        .hidden {
-            display: none !important;
-        }
-        @media (max-width: 1280px) {
-            section.grid {
-                grid-template-columns: repeat(3, 1fr); /* Reduce columns for medium screens */
-                grid-template-rows: repeat(8, 1fr);
-            }
-            section.absolute {
-                display: none; /* Hide side sections on smaller screens */
-            }
-        }
-        @media (max-width: 768px) {
-            section.grid {
-                grid-template-columns: repeat(2, 1fr); /* Further reduce columns for smaller screens */
-                grid-template-rows: repeat(12, 1fr);
-            }
-        }
-        @media (max-width: 480px) {
-            section.grid {
-                grid-template-columns: 1fr; /* Single column for very small screens */
-                grid-template-rows: repeat(24, 1fr);
-            }
-        }
-    </style>
+    <link href="css/styles.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100 text-gray-900">
 <nav class="bg-gray-200 fixed w-full top-0 left-0 shadow-md z-50">

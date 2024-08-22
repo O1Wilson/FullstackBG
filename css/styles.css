@@ -1,0 +1,24 @@
+.hidden {
+    display: none !important;
+}
+@media (max-width: 1280px) {
+    section.grid {
+        grid-template-columns: repeat(3, 1fr); /* Reduce columns for medium screens */
+        grid-template-rows: repeat(8, 1fr);
+    }
+    section.absolute {
+        display: none; /* Hide side sections on smaller screens */
+    }
+}
+@media (max-width: 768px) {
+    section.grid {
+        grid-template-columns: repeat(2, 1fr); /* Further reduce columns for smaller screens */
+        grid-template-rows: repeat(12, 1fr);
+    }
+}
+@media (max-width: 480px) {
+    section.grid {
+        grid-template-columns: 1fr; /* Single column for very small screens */
+        grid-template-rows: repeat(24, 1fr);
+    }
+}
