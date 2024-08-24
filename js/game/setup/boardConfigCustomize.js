@@ -2,7 +2,7 @@ document.getElementById('customSearch').addEventListener('input', function() {
     const searchValue = this.value.toLowerCase();
 
     // Select all location elements
-    const locationItems = document.querySelectorAll('.grid div');
+    const locationItems = document.querySelectorAll('.griddy div');
 
     locationItems.forEach(locationItem => {
         const locationId = locationItem.id.toLowerCase();
