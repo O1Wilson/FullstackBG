@@ -139,6 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 case 'customTab':
                     loadImages();
                     hideTags();
+                    reapplyTints();
                     //hidePresets();
                     break;
                 case 'presetTab':
