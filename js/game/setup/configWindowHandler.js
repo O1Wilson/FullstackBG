@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to generate image HTML
     function createImageElement(images) {
         return `
-            <button id="${images.id}" class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden relative" data-alias="${images.alias}" onclick="toggleOpacity('${images.id}')">
+            <button id="${images.id}" class="bg-gray-300 h-28 w-48 rounded-md flex items-center justify-center overflow-hidden relative" data-alias="${images.alias}" onclick="toggleOpacity('${images.id}')">
                 <img src="css/images/${images.name}.jpg" alt="${images.name}" class="h-full w-full object-cover" />
                 <div class="absolute inset-0 bg-black bg-opacity-50 transition-opacity duration-300"></div>
             </button>

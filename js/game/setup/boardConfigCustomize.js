@@ -2,7 +2,7 @@ document.getElementById('customSearch').addEventListener('input', function() {
     const searchValue = this.value.toLowerCase();
 
     // Select all location elements
-    const locationItems = document.querySelectorAll('.griddy div');
+    const locationItems = document.querySelectorAll('.griddy button');
 
     locationItems.forEach(locationItem => {
         const locationId = locationItem.id.toLowerCase();
@@ -50,6 +50,7 @@ function toggleOpacity(id) {
         toggledItems.add(id);
         toggledCount++;
     }
+    console.log(`Updated toggled count: ${toggledCount}`);
 
     // Update cursor style based on the selection state
     if (toggledCount >= 25) {
