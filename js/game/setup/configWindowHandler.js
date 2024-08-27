@@ -1,11 +1,3 @@
-// Function to toggle the opacity of the overlay
-function toggleOpacity(id) {
-    const button = document.getElementById(id);
-    const overlay = button.querySelector('div');
-    overlay.classList.toggle('bg-opacity-0');
-    overlay.classList.toggle('bg-opacity-50');
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     // Sample tag data
     const tags = [

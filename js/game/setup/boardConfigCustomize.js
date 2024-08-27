@@ -22,3 +22,45 @@ document.getElementById('customSearch').addEventListener('input', function() {
         }
     });
 });
+
+// Function to toggle the opacity of the overlay
+let toggledCount = 0;
+const toggledItems = new Set();
+
+function toggleOpacity(id) {
+    const button = document.getElementById(id);
+    const overlay = button.querySelector('div');
+
+    if (toggledItems.has(id)) {
+        // If the item is already toggled, untoggle it
+        console.log(`Item ${id} is already toggled. Untoggling it.`);
+        overlay.classList.remove('bg-opacity-0');
+        overlay.classList.add('bg-opacity-50');
+        toggledItems.delete(id);
+        toggledCount--;
+    } else {
+        // If the item is not toggled, check the cap
+        if (toggledCount >= 25) {
+            // Prevent further toggling
+            button.classList.add('cursor-not-allowed');
+            return;
+        }
+        overlay.classList.remove('bg-opacity-50');
+        overlay.classList.add('bg-opacity-0');
+        toggledItems.add(id);
+        toggledCount++;
+    }
+
+    // Update cursor style based on the selection state
+    if (toggledCount >= 25) {
+        document.querySelectorAll('.griddy button').forEach(btn => {
+            if (!toggledItems.has(btn.id)) {
+                btn.classList.add('cursor-not-allowed');
+            }
+        });
+    } else {
+        document.querySelectorAll('.griddy button').forEach(btn => {
+            btn.classList.remove('cursor-not-allowed');
+        });
+    }
+}
