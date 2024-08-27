@@ -15,36 +15,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Sample image data
     const images = [
-        { id: "aacenter", name: "americanairlines", alias: "the american airlines center stadium, american airlines center stadium" },
-        { id: "anicentgreece", name: "aincentgreece", alias: "greece,rome,aincent greece,aincent rome,ancient rome,ancient greece" },
-        { id: "attstad", name: "at&tcenter", alias: "at&t stadium,at and t stadium,atant stadium,atandt stadium,at8t stadium,cowboys" },
-        { id: "bartleyhouse", name: "bartleyhouse", alias: "bartley house,bartly house,bartely house,the bartley house,the bartly house,the bartely house,the bartleys,the bartelys,the bartlys,the bartley's,the bartely's,the bartly's,tommy's house,tommys house" },
-        { id: "bikinibottom", name: "bikinibottom", alias: "the bikini bottom,bikini bottom,spongebob bikini bottom,sponge bob bikini bottom" },
-        { id: "brandedburger", name: "brandedburger", alias: "branded burger" },
-        { id: "chuckecheese", name: "chuckycheesepizza", alias: "chuck e cheese" },
-        { id: "de_office", name: "cs2office", alias: "office,csoffice,cs office,csgo office,cs2 office,the office" },
-        { id: "drakehouse", name: "drakehouse", alias: "drake house,drakes house,drake's house,diddy party" },
-        { id: "galveston", name: "galveston", alias: "the beach,galveston beach" },
-        { id: "greatbritain", name: "uk", alias: "great britain,britain,uk,the uk,the u.k.,u.k.,chewsday innit,innit,hell" },
-        { id: "hogwarts", name: "hogwarts", alias: "hogwarts school of witchcraft and wizardry,harry potter" },
-        { id: "hibachio", name: "hibachio", alias: "hibachio grill" },
-        { id: "hooters", name: "hooters", alias: "owen's ideal woman,owen's ideal women,brayden's ideal woman,brayden's ideal women,tommy's ideal woman,tommy's ideal women,twin peaks" },
-        { id: "lukesclassroom", name: "lukeclassroom", alias: "lukes classroom,luke's classroom,classroom" },
-        { id: "midlopark", name: "midlothianpark", alias: "the midlothian community park,midlothian community park,midlothian park,the spot" },
-        { id: "mhs", name: "mhs", alias: "midlothian highschool,midlothian high school,hell" },
-        { id: "oblock", name: "oblock", alias: "oblock,the hood" },
-        { id: "ravenswoodbluff", name: "ravenswood", alias: "ravenswood bluff,ravens wood bluff,raven's wood bluff" },
-        { id: "showbiz", name: "showbiz", alias: "showbiz theater,showbiz theatre,showbiz cinema waxahachie,waxahachie theatre,waxahachie theater,waxahachie showbiz cinema theater" },
-        { id: "sixflags", name: "sixflags", alias: "six flags,rollercoaster park,amusement park" },
-        { id: "skeld", name: "theskeld", alias: "amongus,among us,amog us,amogus,the skeld,sussy baka,vented,electrical,imposter" },
-        { id: "som", name: "somdiscord", alias: "som discord server,society of merchants,som server, som chat,som call,discord server" },
-        { id: "summonersrift", name: "summonersrift", alias: "league of legends,lol,summoners rift,summoner's rift,aram" },
-        { id: "tiltedtowers", name: "tiltedtowers", alias: "fortnite,tilted towers" },
-        { id: "theshire", name: "theshire", alias: "the shire,shire,hobbits,lord of the rings,lotr" },
-        { id: "thewhitehouse", name: "whitehouse", alias: "the white house,white house" },
-        { id: "twintowers", name: "twintowers", alias: "twin towers,world trade center,wtc,9/11" },
-        { id: "utaustin", name: "utaustin", alias: "austin,ut austin,college,lhr twerk day" },
-        { id: "whiterun", name: "whiterun", alias: "skyrim" },
+        { location:"American Airlines Center", id: "aacenter", name: "americanairlines", alias: "the american airlines center stadium, american airlines center stadium" },
+        { location:"Ancient Greece", id: "anicentgreece", name: "aincentgreece", alias: "greece,rome,aincent greece,aincent rome,ancient rome,ancient greece" },
+        { location:"At&t Stadium", id: "attstad", name: "at&tcenter", alias: "at&t stadium,at and t stadium,atant stadium,atandt stadium,at8t stadium,cowboys" },
+        { location:"The Bartley House", id: "bartleyhouse", name: "bartleyhouse", alias: "bartley house,bartly house,bartely house,the bartley house,the bartly house,the bartely house,the bartleys,the bartelys,the bartlys,the bartley's,the bartely's,the bartly's,tommy's house,tommys house" },
+        { location:"Bikini Bottom", id: "bikinibottom", name: "bikinibottom", alias: "the bikini bottom,bikini bottom,spongebob bikini bottom,sponge bob bikini bottom" },
+        { location:"Branded Burger", id: "brandedburger", name: "brandedburger", alias: "branded burger" },
+        { location:"Chuck E Cheese", id: "chuckecheese", name: "chuckycheesepizza", alias: "chuck e cheese" },
+        { location:"CS2 Office", id: "de_office", name: "cs2office", alias: "office,csoffice,cs office,csgo office,cs2 office,the office" },
+        { location:"Drake's House", id: "drakehouse", name: "drakehouse", alias: "drake house,drakes house,drake's house,diddy party" },
+        { location:"Galveston", id: "galveston", name: "galveston", alias: "the beach,galveston beach" },
+        { location:"Great Britain", id: "greatbritain", name: "uk", alias: "great britain,britain,uk,the uk,the u.k.,u.k.,chewsday innit,innit,hell" },
+        { location:"Hogwarts", id: "hogwarts", name: "hogwarts", alias: "hogwarts school of witchcraft and wizardry,harry potter" },
+        { location:"Hibachio", id: "hibachio", name: "hibachio", alias: "hibachio grill" },
+        { location:"Hooters", id: "hooters", name: "hooters", alias: "owen's ideal woman,owen's ideal women,brayden's ideal woman,brayden's ideal women,tommy's ideal woman,tommy's ideal women,twin peaks" },
+        { location:"Luke's Classroom", id: "lukesclassroom", name: "lukeclassroom", alias: "lukes classroom,luke's classroom,classroom" },
+        { location:"Midlo Community Park", id: "midlopark", name: "midlothianpark", alias: "the midlothian community park,midlothian community park,midlothian park,the spot" },
+        { location:"Midlo High School", id: "mhs", name: "mhs", alias: "midlothian highschool,midlothian high school,hell" },
+        { location:"O-Block", id: "oblock", name: "oblock", alias: "oblock,the hood" },
+        { location:"Ravenswood Bluff", id: "ravenswoodbluff", name: "ravenswood", alias: "ravenswood bluff,ravens wood bluff,raven's wood bluff" },
+        { location:"Showbiz Cinema", id: "showbiz", name: "showbiz", alias: "showbiz theater,showbiz theatre,showbiz cinema waxahachie,waxahachie theatre,waxahachie theater,waxahachie showbiz cinema theater" },
+        { location:"Six Flags", id: "sixflags", name: "sixflags", alias: "six flags,rollercoaster park,amusement park" },
+        { location:"The Skeld", id: "skeld", name: "theskeld", alias: "amongus,among us,amog us,amogus,the skeld,sussy baka,vented,electrical,imposter" },
+        { location:"SOM Discord", id: "som", name: "somdiscord", alias: "som discord server,society of merchants,som server, som chat,som call,discord server" },
+        { location:"Summoner's Rift", id: "summonersrift", name: "summonersrift", alias: "league of legends,lol,summoners rift,summoner's rift,aram" },
+        { location:"Tilted Towers", id: "tiltedtowers", name: "tiltedtowers", alias: "fortnite,tilted towers" },
+        { location:"The Shire", id: "theshire", name: "theshire", alias: "the shire,shire,hobbits,lord of the rings,lotr" },
+        { location:"The White House", id: "thewhitehouse", name: "whitehouse", alias: "the white house,white house" },
+        { location:"The Twin Towers", id: "twintowers", name: "twintowers", alias: "twin towers,world trade center,wtc,9/11" },
+        { location:"UT Austin", id: "utaustin", name: "utaustin", alias: "austin,ut austin,college,lhr twerk day" },
+        { location:"Whiterun", id: "whiterun", name: "whiterun", alias: "skyrim" },
     ];
 
     // Function to generate tag HTML
@@ -60,9 +60,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to generate image HTML
     function createImageElement(images) {
         return `
-            <button id="${images.id}" class="bg-gray-300 h-28 w-48 rounded-md flex items-center justify-center overflow-hidden relative" data-alias="${images.alias}" onclick="toggleOpacity('${images.id}')">
+            <button id="${images.id}" class="group bg-gray-300 h-28 w-48 rounded-md flex items-center justify-center overflow-hidden relative" data-alias="${images.alias}" onclick="toggleOpacity('${images.id}')">
                 <img src="css/images/${images.name}.jpg" alt="${images.name}" class="h-full w-full object-cover" />
                 <div class="absolute inset-0 bg-black bg-opacity-50 transition-opacity duration-300"></div>
+                <div class="absolute text-white opacity-0 group-hover:opacity-100">
+                    <span class="text-xl font-bold">${images.location}</span>
+                </div>
             </button>
         `;
     }
