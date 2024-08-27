@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skibidi Spyfall</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="css/styles.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100 text-gray-900">
@@ -165,31 +166,45 @@
     </section>
     <!-- Map Grid -->
     <section class="grid grid-rows-6 grid-cols-5 gap-4 justify-items-center items-center">
-        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/aincentgreece.jpg" alt="Location" class="h-full w-full object-cover" /></div>
-        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/americanairlines.jpg" alt="Location" class="h-full w-full object-cover" /></div>
-        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/at&tcenter.jpg" alt="Location" class="h-full w-full object-cover" /></div>
-        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/bartleyhouse.jpg" alt="Location" class="h-full w-full object-cover" /></div>
-        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/bikinibottom.jpg" alt="Location" class="h-full w-full object-cover" /></div>
-        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/brandedburger.jpg" alt="Location" class="h-full w-full object-cover" /></div>
-        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/chuckycheesepizza.jpg" alt="Location" class="h-full w-full object-cover" /></div>
-        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/cs2office.jpg" alt="Location" class="h-full w-full object-cover" /></div>
-        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/drakehouse.jpg" alt="Location" class="h-full w-full object-cover" /></div>
-        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/galveston.jpg" alt="Location" class="h-full w-full object-cover" /></div>
-        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/hibachio.jpg" alt="Location" class="h-full w-full object-cover" /></div>
-        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/hogwarts.jpg" alt="Location" class="h-full w-full object-cover" /></div>
-        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/hooters.jpg" alt="Location" class="h-full w-full object-cover" /></div>
-        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/lukeclassroom.jpg" alt="Location" class="h-full w-full object-cover" /></div>
-        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/mhs.jpg" alt="Location" class="h-full w-full object-cover" /></div>
-        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/midlothianpark.jpg" alt="Location" class="h-full w-full object-cover" /></div>
-        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/oblock.jpg" alt="Location" class="h-full w-full object-cover" /></div>
-        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/ravenswood.jpg" alt="Location" class="h-full w-full object-cover" /></div>
-        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/showbiz.jpg" alt="Location" class="h-full w-full object-cover" /></div>
-        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/sixflags.jpg" alt="Location" class="h-full w-full object-cover" /></div>
-        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/somdiscord.jpg" alt="Location" class="h-full w-full object-cover" /></div>
-        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/summonersrift.jpg" alt="Location" class="h-full w-full object-cover" /></div>
-        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/theshire.jpg" alt="Location" class="h-full w-full object-cover" /></div>
-        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/theskeld.jpg" alt="Location" class="h-full w-full object-cover" /></div>
-        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/tiltedtowers.jpg" alt="Location" class="h-full w-full object-cover" /></div>
+        <div class="relative bg-gray-300 group h-32 w-56 rounded-md flex items-center justify-center overflow-hidden">
+            <img src="css/images/aincentgreece.jpg" alt="Location" class="h-full w-full object-cover z-0" />
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity z-1"></div>
+            <div class="absolute text-white text-center z-20">
+                <span class="text-xl font-bold">Ancient Greece</span>
+            </div>
+            <div class="absolute top-1 right-1 flex space-x-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                <i class="fas fa-bookmark text-green-500 hover:text-green-700"></i>
+                <i class="fas fa-bookmark text-yellow-500 hover:text-yellow-700"></i>
+                <i class="fas fa-bookmark text-red-500 hover:text-red-700"></i>
+            </div>
+            <button class="absolute bottom-2 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-gray-700 hover:bg-gray-800 text-white py-1 px-3 rounded-full z-20" style="cursor: pointer;" onclick="openPopup(this)">
+                Select
+            </button>
+        </div>
+        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/americanairlines.jpg" alt="Location" class="h-full w-full object-cover hover:bg-opacity-50" /></div>
+        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/at&tcenter.jpg" alt="Location" class="h-full w-full object-cover hover:bg-opacity-50" /></div>
+        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/bartleyhouse.jpg" alt="Location" class="h-full w-full object-cover hover:bg-opacity-50" /></div>
+        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/bikinibottom.jpg" alt="Location" class="h-full w-full object-cover hover:bg-opacity-50" /></div>
+        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/brandedburger.jpg" alt="Location" class="h-full w-full object-cover hover:bg-opacity-50" /></div>
+        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/chuckycheesepizza.jpg" alt="Location" class="h-full w-full object-cover hover:bg-opacity-50" /></div>
+        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/cs2office.jpg" alt="Location" class="h-full w-full object-cover hover:bg-opacity-50" /></div>
+        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/drakehouse.jpg" alt="Location" class="h-full w-full object-cover hover:bg-opacity-50" /></div>
+        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/galveston.jpg" alt="Location" class="h-full w-full object-cover hover:bg-opacity-50" /></div>
+        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/hibachio.jpg" alt="Location" class="h-full w-full object-cover hover:bg-opacity-50" /></div>
+        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/hogwarts.jpg" alt="Location" class="h-full w-full object-cover hover:bg-opacity-50" /></div>
+        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/hooters.jpg" alt="Location" class="h-full w-full object-cover hover:bg-opacity-50" /></div>
+        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/lukeclassroom.jpg" alt="Location" class="h-full w-full object-cover hover:bg-opacity-50" /></div>
+        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/mhs.jpg" alt="Location" class="h-full w-full object-cover hover:bg-opacity-50" /></div>
+        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/midlothianpark.jpg" alt="Location" class="h-full w-full object-cover hover:bg-opacity-50" /></div>
+        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/oblock.jpg" alt="Location" class="h-full w-full object-cover hover:bg-opacity-50" /></div>
+        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/ravenswood.jpg" alt="Location" class="h-full w-full object-cover hover:bg-opacity-50" /></div>
+        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/showbiz.jpg" alt="Location" class="h-full w-full object-cover hover:bg-opacity-50" /></div>
+        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/sixflags.jpg" alt="Location" class="h-full w-full object-cover hover:bg-opacity-50" /></div>
+        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/somdiscord.jpg" alt="Location" class="h-full w-full object-cover hover:bg-opacity-50" /></div>
+        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/summonersrift.jpg" alt="Location" class="h-full w-full object-cover hover:bg-opacity-50" /></div>
+        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/theshire.jpg" alt="Location" class="h-full w-full object-cover hover:bg-opacity-50" /></div>
+        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/theskeld.jpg" alt="Location" class="h-full w-full object-cover hover:bg-opacity-50" /></div>
+        <div class="bg-gray-300 h-32 w-56 rounded-md flex items-center justify-center overflow-hidden"><img src="css/images/tiltedtowers.jpg" alt="Location" class="h-full w-full object-cover hover:bg-opacity-50" /></div>
     </section> 
     <!-- Right Players -->
     <section class="grid grid-cols-1 gap-4 justify-items-center items-center absolute -right-6 top-40">
