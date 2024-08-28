@@ -23,7 +23,6 @@ document.getElementById('customSearch').addEventListener('input', function() {
     });
 });
 
-// Function to toggle the opacity of the overlay
 let toggledCount = 0;
 const toggledItems = new Set();
 const generateButton = document.getElementById('customApplyButton');

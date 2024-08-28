@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Function to toggle tag visibility in the sidebar
     function toggleTagVisibility(tagId, isVisible) {
         const tag = document.getElementById(tagId);
         if (tag) {
@@ -14,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const MAX_ITEM_COUNT = 25;
     let totalItemCount = 0;
 
-    // Function to update the total item count
     function updateTotalItemCount() {
         totalItemCount = 0;
         const selectElements = document.querySelectorAll('#activeTable select');
@@ -31,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
             adjustSelectOptions(selectElement, remainingItems + currentVal);
         });
 
-        // Check if the cap is reached
         if (totalItemCount >= MAX_ITEM_COUNT) {
             disableAdditions();
         } else {
@@ -86,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Function to adjust the options in the select elements dynamically
     function adjustSelectOptions(selectElement, remainingItems) {
         for (let i = 0; i < selectElement.options.length; i++) {
             const optionVal = parseInt(selectElement.options[i].value, 10);
@@ -98,7 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Modify the addTagToTable function to check the cap before adding
     function addTagToTable(tagElement) {
         if (totalItemCount >= MAX_ITEM_COUNT) {
             return;
@@ -170,7 +165,6 @@ document.addEventListener('DOMContentLoaded', () => {
             updateTotalItemCount();
         });
 
-        // Event listener for the select element to track changes in item count
         row.querySelector('select').addEventListener('change', (event) => {
             updateTotalItemCount();
         });
@@ -185,7 +179,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const dropdownMenu = row.querySelector('.table-dropdown-menu');
             dropdownMenu.classList.toggle('hidden');
             
-            // Stop the click event from propagating to the document
             event.stopPropagation();
         });
 
@@ -208,7 +201,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Function to attach event listeners to tags
     function attachTagEventListeners() {
         document.querySelectorAll('.tag-item').forEach(tag => {
             tag.removeEventListener('click', handleTagClick);
@@ -216,7 +208,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Event handler for tag click
     function handleTagClick(event) {
         addTagToTable(event.currentTarget);
     }
@@ -232,7 +223,6 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(sidebarTagsContainer, { childList: true });
     }
 
-    // Initial attachment of event listeners
     attachTagEventListeners();
 });
 

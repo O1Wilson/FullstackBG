@@ -47,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
         { location:"Whiterun", id: "whiterun", name: "whiterun", alias: "skyrim" },
     ];
 
-    // Function to generate tag HTML
     function createTagElement(tag) {
         return `
             <span id="tag-${tag.id}" class="tag-item bg-gray-300 text-gray-700 rounded-full px-3 py-1 text-xs font-medium inline-flex items-center relative cursor-pointer">
@@ -57,7 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     }
 
-    // Function to generate image HTML
     function createImageElement(images) {
         return `
             <button id="${images.id}" class="group bg-gray-300 h-28 w-48 rounded-md flex items-center justify-center overflow-hidden relative" data-alias="${images.alias}" onclick="toggleOpacity('${images.id}')">
@@ -70,13 +68,11 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     }
 
-    // Function to load and insert tags
     function loadTags() {
         const container = document.getElementById('sideBarTags');
         container.innerHTML = tags.map(createTagElement).join('');
     }
 
-    // Function to hide tags
     function hideTags() {
         const container = document.getElementById('sideBarTags');
         container.innerHTML = '';
@@ -87,20 +83,17 @@ document.addEventListener('DOMContentLoaded', () => {
         container.innerHTML = images.map(createImageElement).join(''); 
     }
 
-    // Function to hide images
     function hideImages() {
         const container = document.querySelector('.griddy');
         container.innerHTML = '';
     }
 
-    // Function to show the customize map pop-up
     function showCustomizePopup() {
         const popup = document.getElementById('customize-map-popup');
         popup.classList.remove('hidden');
         loadTags();
     }
 
-    // Function to hide the customize map pop-up
     function hideCustomizePopup() {
         const popup = document.getElementById('customize-map-popup');
         popup.classList.add('hidden');
@@ -115,11 +108,11 @@ document.addEventListener('DOMContentLoaded', () => {
             hideCustomizePopup();
         }
     });
+
     // Select all tabs and tab content sections
     const tabs = document.querySelectorAll('.tab');
     const tabContents = document.querySelectorAll('.tab-content');
 
-    // Function to show a specific tab content and hide others
     function showTabContent(tabId) {
         tabContents.forEach(content => {
             content.classList.add('hidden');
