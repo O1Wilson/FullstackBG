@@ -55,9 +55,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 <span class="text-xl font-bold">${location.name}</span>
             </div>
             <div class="absolute top-1 right-1 flex space-x-1 transition-opacity">
-                <i class="fas fa-bookmark text-green-500 hover:text-green-700 opacity-0 group-hover:opacity-100 -top-1.5 relative" onclick="toggleIcon(this, 'green')"></i>
-                <i class="fas fa-bookmark text-yellow-500 hover:text-yellow-700 opacity-0 group-hover:opacity-100 -top-1.5 relative" onclick="toggleIcon(this, 'yellow')"></i>
-                <i class="fas fa-bookmark text-red-500 hover:text-red-700 opacity-0 group-hover:opacity-100 -top-1.5 relative" onclick="toggleIcon(this, 'red')"></i>
+                <i class="fas fa-bookmark text-green-700 hover:text-green-500 opacity-0 group-hover:opacity-100 -top-1.5 relative" onclick="toggleIcon(this, 'green')"></i>
+                <i class="fas fa-bookmark text-yellow-700 hover:text-yellow-500 opacity-0 group-hover:opacity-100 -top-1.5 relative" onclick="toggleIcon(this, 'yellow')"></i>
+                <i class="fas fa-bookmark text-red-700 hover:text-red-500 opacity-0 group-hover:opacity-100 -top-1.5 relative" onclick="toggleIcon(this, 'red')"></i>
             </div>
             <button class="absolute bottom-2 left-1/2 transform -translate-x-1/2 transition-opacity bg-gray-700 hover:bg-gray-800 bg-opacity-100 px-3 rounded-lg opacity-0 group-hover:opacity-100" style="cursor: pointer;" onclick="openPopup(this)">
                 Select
@@ -71,9 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Function to toggle icon visibility and button
 function toggleIcon(element, color) {
-    const parent = element.closest('#location-container');  // Locate the nearest parent with id="location-container"
-    
-    // Ensure the parent exists before proceeding
+    const parent = element.closest('#location-container');
     if (!parent) {
         console.error(`Parent element with id 'location-container' not found.`);
         return;
@@ -86,13 +84,30 @@ function toggleIcon(element, color) {
     // Toggle visibility of the clicked icon
     if (element.classList.contains('opacity-0')) {
         element.classList.remove('opacity-0');
+        element.classList.remove(`text-${color}-700`);
+        element.classList.remove(`hover:text-${color}-500`);
+        element.classList.add(`text-${color}-500`);
+        element.classList.add(`hover:text-${color}-700`);
     } else {
         element.classList.add('opacity-0');
+        element.classList.remove(`text-${color}-500`);
+        element.classList.remove(`hover:text-${color}-700`);
+        element.classList.add(`text-${color}-700`);
+        element.classList.add(`hover:text-${color}-500`);
     }
 
     // If the red icon is clicked, keep the overlay visible
     if (color === 'red') {
-        overlay.classList.toggle('opacity-50', element.classList.contains('opacity-100'));
+        if (element.classList.contains('opacity-0')) {
+            const anyRedVisible = Array.from(icons).some(icon => 
+                icon.classList.contains('text-red-500') && !icon.classList.contains('opacity-0')
+            );
+            if (!anyRedVisible) {
+                overlay.classList.remove('opacity-50');
+            }
+        } else {
+            overlay.classList.add('opacity-50');
+        }
     }
 
     // Show the button if any icon is visible
@@ -116,7 +131,12 @@ function openPopup(button) {
 
     // Create the popup content
     const popupContent = document.createElement('div');
-    popupContent.className = 'bg-white p-5 rounded-lg shadow-lg relative max-w-full max-h-full';
+    popupContent.className = 'bg-white p-5 rounded-lg shadow-lg relative';
+    popupContent.style.width = '1080px'; 
+    popupContent.style.height = '600px';
+    popupContent.style.display = 'flex';
+    popupContent.style.justifyContent = 'center';
+    popupContent.style.alignItems = 'center';
     popupContent.onclick = function(event) {
         event.stopPropagation();
     };
@@ -124,7 +144,10 @@ function openPopup(button) {
     // Add the image to the popup
     const img = document.createElement('img');
     img.src = imgSrc;
-    img.className = 'rounded-md max-w-full max-h-full';
+    img.className = 'rounded-md';
+    img.style.width = '100%'; 
+    img.style.height = '100%';
+    img.style.objectFit = 'cover';
     popupContent.appendChild(img);
 
     // Add a close button to the popup
@@ -136,7 +159,6 @@ function openPopup(button) {
     };
     popupContent.appendChild(closeButton);
 
-    // Append the content to the overlay and the overlay to the body
     popupOverlay.appendChild(popupContent);
     document.body.appendChild(popupOverlay);
 }
