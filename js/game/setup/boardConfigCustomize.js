@@ -46,7 +46,6 @@ function toggleOpacity(id) {
     } else {
         // If the item is not toggled, check the cap
         if (toggledCount >= 25) {
-            // Prevent further toggling
             button.classList.add('cursor-not-allowed');
             return;
         }

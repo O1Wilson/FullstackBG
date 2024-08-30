@@ -58,10 +58,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function createImageElement(images) {
         return `
-            <button id="${images.id}" class="group bg-gray-300 h-28 w-48 rounded-md flex items-center justify-center overflow-hidden relative" data-alias="${images.alias}" onclick="toggleOpacity('${images.id}')">
+            <button id="${images.id}" class="group bg-gray-300 h-28 w-48 rounded-md flex items-center justify-center overflow-hidden relative text-white" data-alias="${images.alias}" onclick="toggleOpacity('${images.id}')">
                 <img src="css/images/${images.name}.jpg" alt="${images.name}" class="h-full w-full object-cover" />
                 <div class="absolute inset-0 bg-black bg-opacity-50 group-hover:opacity-0 transition-opacity duration-300"></div>
-                <div class="absolute text-white opacity-0 group-hover:opacity-100">
+                <div class="absolute opacity-0 group-hover:opacity-100">
                     <span class="text-xl font-bold">${images.location}</span>
                 </div>
             </button>
