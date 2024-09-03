@@ -22,3 +22,23 @@
         grid-template-rows: repeat(24, 1fr);
     }
 }
+#location-container.hidden {
+    display: none;
+  }
+  
+  #location-container.show {
+    display: block;
+    animation: slideIn 1s ease forwards;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
