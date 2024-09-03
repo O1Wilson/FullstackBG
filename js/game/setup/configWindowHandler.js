@@ -80,7 +80,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function loadImages() {
         const container = document.querySelector('.griddy');
-        container.innerHTML = images.map(createImageElement).join(''); 
+        const staticButton = container.querySelector('.add-new-item');
+        if (staticButton) {
+            staticButton.remove();
+        }
+
+        container.innerHTML = '';
+        const dynamicButtons = images.map(createImageElement).join('');
+        container.insertAdjacentHTML('beforeend', dynamicButtons);
+
+        if (staticButton) {
+            container.appendChild(staticButton);
+        }
     }
 
     function hideImages() {
