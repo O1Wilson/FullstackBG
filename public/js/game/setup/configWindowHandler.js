@@ -165,7 +165,3 @@ document.addEventListener('DOMContentLoaded', () => {
         showTabContent(defaultTabId);
     }
 });
-
-// Handles switching between the different setup categories.
-//
-// Add code for generating board from setup
