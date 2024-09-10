@@ -7,10 +7,10 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/boardgame.html'));
+    res.sendFile(path.join(__dirname, 'public', 'boardgame.html'));
 });
 
 io.on('connection', (socket) => {

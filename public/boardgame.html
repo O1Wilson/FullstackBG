@@ -287,23 +287,24 @@
     <button id="customizeButton" class="p-2 bg-blue-500 text-white rounded">Customize Board</button>
     <button id="startGameButton" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Start Game</button>
     <!-- Role Display -->
-    <div id="roleDisplay" class="role-section">
-        <!-- Role will be dynamically inserted here -->
-    </div>
-    <div id="hand" class="fixed bottom-0 left-0 right-0 h-32 bg-gray-800 flex justify-center items-end">
-        <!-- Role Card -->
-        <div id="roleCard" class="role-card transform transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-10">
-            <div class="card-content bg-white rounded-lg shadow-lg overflow-hidden transform translate-y-full hover:translate-y-0 transition-all duration-300">
-                <div class="bg-cover bg-center h-32 w-24">
-                    <!-- Placeholder for image (location or spy) -->
-                    <img id="roleCardImage" class="h-full w-full object-cover" src="css/images/aincentgreece.jpg" alt="Role Card">
-                </div>
-                <div class="p-2 text-center">
-                    <span id="roleCardTitle" class="font-bold text-lg">Your Role</span>
-                </div>
+<div id="roleDisplay" class="role-section">
+    <!-- Role will be dynamically inserted here -->
+</div>
+<!-- Hand section -->
+<div id="hand" class="fixed bottom-0 left-0 right-0 h-16 bg-gray-100 bg-opacity-60 flex justify-center items-end">
+    <!-- Role Card -->
+    <div id="roleCard" class="role-card transform transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-2">
+        <div class="card-content bg-white rounded-lg shadow-md overflow-hidden transform translate-y-full hover:translate-y-0 transition-all duration-300">
+            <div class="bg-cover bg-center h-24 w-16">
+                <!-- Placeholder for image (location or spy) -->
+                <img id="roleCardImage" class="h-full w-full object-cover" src="css/images/aincentgreece.jpg" alt="Role Card">
+            </div>
+            <div class="p-2 text-center">
+                <span id="roleCardTitle" class="font-bold text-lg">Your Role</span>
             </div>
         </div>
-    </div>    
+    </div>
+</div>
 </main>
 <script src="js/styles/navbarProfile.js"></script>
 <script src="js/styles/userstyles.js"></script>
@@ -312,5 +313,8 @@
 <script src="js/game/setup/boardConfigGenerate.js"></script>
 <script src="js/game/setup/boardConfigPreset.js"></script>
 <script src="js/game/mapBoardHandler.js"></script>
+<script src="js/game/app.js"></script>
+<script src="js/game/gamestate.js"></script>
+<script src="/socket.io/socket.io.js"></script>
 </body>
 </html>

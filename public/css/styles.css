@@ -1,7 +1,6 @@
 .hidden {
     display: none !important;
 }
-
 @media (max-width: 1280px) {
     section.grid {
         grid-template-columns: repeat(3, 1fr); /* Reduce columns for medium screens */
@@ -23,25 +22,29 @@
         grid-template-rows: repeat(24, 1fr);
     }
 }
-
+#hand {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgba(211, 211, 211, 0.6);
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  border-radius: 10px;
+}
+.shadow-md {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
 .role-card {
-  width: 6rem;
-  height: 8rem;
-  position: relative;
-  transition: transform 0.5s ease-out;
-  transform: translateY(100%);
+  width: 40%;
 }
 .role-card:hover {
-  transform: translateY(-50%);
-}
-#hand {
-  padding-bottom: 2rem;
-  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
 }
 #roleCard {
   cursor: pointer;
 }
-
 @keyframes slideIn {
   0% {
     transform: translateY(150%);
