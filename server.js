@@ -47,8 +47,7 @@ function getPlayers() {
 }
 
 function assignRoles(players, location) {
-    let playerCount = players.length;
-    let spyIndex = Math.floor(Math.random() * playerCount);
+    let spyIndex = Math.floor(Math.random() * players.length);
 
     players.forEach((player, index) => {
         if (index === spyIndex) {
