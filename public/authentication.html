@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Authentication Page</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+
+<body class="bg-gray-100 h-screen flex justify-center items-center">
+    <!-- Container -->
+    <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
+        <!-- Login Form -->
+        <form id="loginForm" action="/login" method="POST">
+            <h2 class="text-2xl font-bold mb-6 text-center">Login</h2>
+
+            <!-- Username Field -->
+            <div class="mb-4">
+                <label for="usernameLogin" class="block text-gray-700 text-sm font-bold mb-2">Username</label>
+                <input type="text" id="usernameLogin" name="username" class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your username" required>
+            </div>
+
+            <!-- Password Field -->
+            <div class="mb-6">
+                <label for="passwordLogin" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                <input type="password" id="passwordLogin" name="password" class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your password" required>
+            </div>
+
+            <!-- Login Button -->
+            <div class="mb-4">
+                <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Login</button>
+            </div>
+
+            <!-- Switch to Sign-up -->
+            <p class="text-center text-sm text-gray-600">
+                Don't have an account? <a href="#" id="showSignUpForm" class="text-blue-500 hover:underline">Sign up here</a>.
+            </p>
+
+            <!-- OAuth Buttons (Stacked in a Column) -->
+            <div class="flex flex-col gap-4 mb-4">
+                <!-- Google Login -->
+                <a href="/auth/google" class="w-full bg-white text-black py-2 rounded-md border flex items-center justify-center gap-2 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300 mt-4">
+                    <!-- Google Icon -->
+                    <div class="bg-white p-2 rounded-full">
+                        <img src="https://worldvectorlogo.com/logos/google-g-2015.svg" alt="Google Logo" class="w-5 h-5">
+                    </div>
+                    Continue with Google
+                </a>
+
+                <!-- Discord Login -->
+                <a href="/auth/discord" class="w-full bg-indigo-600 text-white py-2 rounded-md flex items-center justify-center gap-2 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <!-- Discord Icon -->
+                    <div class="bg-white p-2 rounded-full">
+                        <img src="https://cdn.worldvectorlogo.com/logos/discord-6.svg" alt="Discord Logo" class="w-5 h-5">
+                    </div>
+                    Continue with Discord
+                </a>
+            </div>
+        </form>
+
+        <!-- Sign-up Form (Hidden by default) -->
+        <form id="signUpForm" action="/signup" method="POST" class="hidden">
+            <h2 class="text-2xl font-bold mb-6 text-center">Sign Up</h2>
+
+            <!-- Username Field -->
+            <div class="mb-4">
+                <label for="usernameSignup" class="block text-gray-700 text-sm font-bold mb-2">Username</label>
+                <input type="text" id="usernameSignup" name="username" class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your username" required>
+            </div>
+
+            <!-- Password Field -->
+            <div class="mb-6">
+                <label for="passwordSignup" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                <input type="password" id="passwordSignup" name="password" class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your password" required>
+            </div>
+
+            <div class="g-recaptcha" data-sitekey="your-site-key"></div>
+
+            <!-- Sign Up Button -->
+            <div class="mb-4">
+                <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Sign Up</button>
+            </div>
+
+            <!-- Switch to Login -->
+            <p class="text-center text-sm text-gray-600">
+                Already have an account? <a href="#" id="showLoginForm" class="text-blue-500 hover:underline">Login here</a>.
+            </p>
+        </form>
+    </div>
+
+    <!-- JavaScript for toggling between login and sign-up forms -->
+    <script>
+        const showSignUpForm = document.getElementById('showSignUpForm');
+        const showLoginForm = document.getElementById('showLoginForm');
+        const loginForm = document.getElementById('loginForm');
+        const signUpForm = document.getElementById('signUpForm');
+
+        showSignUpForm.addEventListener('click', function (e) {
+            e.preventDefault();
+            loginForm.classList.add('hidden');
+            signUpForm.classList.remove('hidden');
+        });
+
+        showLoginForm.addEventListener('click', function (e) {
+            e.preventDefault();
+            signUpForm.classList.add('hidden');
+            loginForm.classList.remove('hidden');
+        });
+    </script>
+</body>
+
+</html>
