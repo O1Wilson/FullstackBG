@@ -1,3 +1,36 @@
+window.images = [
+    { location:"American Airlines Center", id: "aacenter", tags: [4] },
+    { location:"Ancient Greece", id: "anicentgreece", tags: [7] },
+    { location:"At&t Stadium", id: "attstad", tags: [4] },
+    { location:"The Bartley House", id: "bartleyhouse", tags: [3] },
+    { location:"Bikini Bottom", id: "bikinibottom", tags: [6, 8] },
+    { location:"Branded Burger", id: "brandedburger", tags: [1] },
+    { location:"Chuck E Cheese", id: "chuckecheese", tags: [4] },
+    { location:"CS2 Office", id: "de_office", tags: [2, 6] },
+    { location:"Drake's House", id: "drakehouse", tags: [9] },
+    { location:"Galveston", id: "galveston", tags: [9] },
+    { location:"Great Britain", id: "greatbritain", tags: [7] },
+    { location:"Hogwarts", id: "hogwarts", tags: [6, 8] },
+    { location:"Hibachio", id: "hibachio", tags: [1] },
+    { location:"Hooters", id: "hooters", tags: [1] },
+    { location:"Luke's Classroom", id: "lukesclassroom", tags: [3] },
+    { location:"Midlo Community Park", id: "midlopark", tags: [3] },
+    { location:"Midlo High School", id: "mhs", tags: [3] },
+    { location:"O-Block", id: "oblock", tags: [8, 9] },
+    { location:"Ravenswood Bluff", id: "ravenswoodbluff", tags: [6] },
+    { location:"Showbiz Cinema", id: "showbiz", tags: [4] },
+    { location:"Six Flags", id: "sixflags", tags: [4] },
+    { location:"The Skeld", id: "skeld", tags: [2, 6] },
+    { location:"SOM Discord", id: "som", tags: [9] },
+    { location:"Summoner's Rift", tags: [2, 6] },
+    { location:"Tilted Towers", tags: [2, 6] },
+    { location:"The Shire", id: "theshire", tags: [6, 8] },
+    { location:"The White House", id: "thewhitehouse", tags: [7] },
+    { location:"The Twin Towers", id: "twintowers", tags: [7] },
+    { location:"UT Austin", id: "utaustin", tags: [9] },
+    { location:"Whiterun", id: "whiterun", tags: [2, 6] }
+];
+
 document.getElementById('customSearch').addEventListener('input', function() {
     const searchValue = this.value.toLowerCase();
 
@@ -25,7 +58,7 @@ document.getElementById('customSearch').addEventListener('input', function() {
 
 let toggledCount = 0;
 const toggledItems = new Set();
-const generateButton = document.getElementById('customApplyButton');
+const generateButton = document.getElementById('customSubmitButton');
 const toggledCountDisplay = document.getElementById('toggledCountDisplay');
 
 function updateToggledCountDisplay() {
@@ -71,18 +104,39 @@ function toggleOpacity(id) {
 
      // Update generate button style based on the toggled count
     if (toggledCount === 25) {
-        customApplyButton.classList.remove('bg-gray-300', 'bg-red-500', 'cursor-not-allowed');
-        customApplyButton.classList.add('bg-green-500', 'hover:bg-green-600', 'text-white');
+        customSubmitButton.classList.remove('bg-gray-300', 'bg-red-500', 'cursor-not-allowed');
+        customSubmitButton.classList.add('bg-green-500', 'hover:bg-green-600', 'text-white');
     } else if (toggledCount > 25) {
-        customApplyButton.classList.remove('bg-gray-300', 'bg-green-500');
-        customApplyButton.classList.add('bg-red-500', 'cursor-not-allowed');
+        customSubmitButton.classList.remove('bg-gray-300', 'bg-green-500');
+        customSubmitButton.classList.add('bg-red-500', 'cursor-not-allowed');
     } else {
-        customApplyButton.classList.remove('bg-green-500', 'bg-red-500', 'cursor-not-allowed', 'hover:bg-green-600', 'text-white');
-        customApplyButton.classList.add('bg-gray-300');
+        customSubmitButton.classList.remove('bg-green-500', 'bg-red-500', 'cursor-not-allowed', 'hover:bg-green-600', 'text-white');
+        customSubmitButton.classList.add('bg-gray-300');
     }
 
     // Update the toggled count display
     updateToggledCountDisplay();
+}
+
+document.getElementById('customSubmitButton').addEventListener('click', function() {
+    if (toggledCount === 25) {
+        generateSelectedLocations();
+    } else {
+        alert(`Please select exactly 25 locations. You have selected ${toggledCount}.`);
+    }
+});
+
+function generateSelectedLocations() {
+    const selectedLocations = [];
+
+    toggledItems.forEach(toggledId => {
+        const location = images.find(img => img.id === toggledId);
+        if (location) {
+            selectedLocations.push(location);
+        }
+    });
+
+    sendSelectedLocationsToServer(selectedLocations);
 }
 
 function reapplyTints() {

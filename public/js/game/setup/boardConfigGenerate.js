@@ -102,6 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const itemCount = parseInt(tagElement.querySelector('span').textContent.trim(), 10);
         const tagId = tagElement.getAttribute('id');
 
+        console.log(`Adding tag: ${tagId}, Count: ${itemCount}`);
+
         const tableBody = document.querySelector('#activeTable tbody');
         const row = document.createElement('tr');
         row.classList.add('border-b');
@@ -241,3 +243,104 @@ document.getElementById('tagSearch').addEventListener('input', function() {
         }
     });
 });
+
+// Generate button
+document.getElementById('generateRandomButton').addEventListener('click', () => {
+    const selectedTags = getSelectedTags();
+
+    document.querySelectorAll('.tag-item.selected').forEach(tag => {
+        selectedTags.push(tag.getAttribute('id'));
+    });
+
+    const generatedLocations = generateRandomLocations(selectedTags);
+
+    if (generatedLocations.length === 0) {
+        openRolePopup('Error', 'Please choose locations from the map-board');
+    } else {
+        sendSelectedLocationsToServer(generatedLocations);
+    }
+});
+
+// Generate weighted random locations
+function generateRandomLocations(selectedTags) {
+    const filteredLocations = [];
+
+    // Access global tags
+    const tags = window.tags;
+    const location = window.images;
+
+    // Build a pool of locations based on selected tags
+    selectedTags.forEach(tag => {
+        // Normalize tag ID
+        const tagId = tag.id.replace(/^tag-/, '');
+
+        // Find the tag data by normalized ID
+        const tagData = tags.find(t => t.id === tagId);
+        console.log("Processing Tag: ", tagData);
+
+        if (tagData) {
+            location.forEach(loc => {
+                // Check if the location has the tag
+                if (loc.tags.includes(tagId)) {
+                    // Add the location based on the quantity
+                    for (let i = 0; i < tag.quantity; i++) {
+                        filteredLocations.push(loc);
+                    }
+                }
+            });
+        } else {
+            console.error(`Tag with id ${tagId} not found in tags.`);
+        }
+    });
+
+    console.log("Filtered Locations: ", filteredLocations.length);
+
+    // Randomly select up to 25 unique locations
+    const randomSelection = [];
+    let attemptCounter = 0;
+
+    while (randomSelection.length < 25 && filteredLocations.length > 0) {
+        attemptCounter++;
+        if (attemptCounter > 1000) { // To prevent infinite loops
+            console.error("Too many attempts! Breaking the loop.");
+            break;
+        }
+
+        const randomIndex = Math.floor(Math.random() * filteredLocations.length);
+        const selectedLoc = filteredLocations.splice(randomIndex, 1)[0];
+        if (!randomSelection.includes(selectedLoc)) {
+            randomSelection.push(selectedLoc);
+        }
+    }
+
+    console.log("Random Selection: ", randomSelection.length);
+
+    // If fewer than 25 are selected, randomly add remaining locations
+    attemptCounter = 0;
+    while (randomSelection.length < 25) {
+        attemptCounter++;
+        if (attemptCounter > 1000) {
+            console.error("Too many attempts to fill up locations. Breaking.");
+            break;
+        }
+
+        const randomIndex = Math.floor(Math.random() * location.length);
+        const selectedLoc = location[randomIndex];
+        if (!randomSelection.includes(selectedLoc)) {
+            randomSelection.push(selectedLoc);
+        }
+    }
+
+    console.log("Final Random Selection: ", randomSelection.length);
+    return randomSelection;
+}
+
+function getSelectedTags() {
+    const selectedTags = [];
+    document.querySelectorAll('#activeTable tbody tr').forEach(row => {
+        const tagId = row.getAttribute('data-tag-id');
+        const quantity = parseInt(row.querySelector('select').value, 10);
+        selectedTags.push({ id: tagId, quantity: quantity });
+    });
+    return selectedTags;
+}

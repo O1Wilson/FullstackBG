@@ -1,5 +1,10 @@
 const socket = io();
 
+// Send the selected locations array to the backend
+function sendSelectedLocationsToServer(selectedLocations) {
+    socket.emit('setLocations', selectedLocations);
+}
+
 // Handle start game button click
 document.getElementById('startGameButton').addEventListener('click', () => {
     socket.emit('startGame');

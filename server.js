@@ -13,16 +13,31 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'boardgame.html'));
 });
 
+let availableLocations = [];
+
 io.on('connection', (socket) => {
     console.log('A player connected');
 
-      socket.on('startGame', () => {
-        const players = getPlayers();
-        const location = 'Some Location';
+    // Listen for the event when locations are sent from the client
+    socket.on('setLocations', (locations) => {
+        if (locations.length > 0) {
+            availableLocations = locations;
+            console.log('Available locations updated:', availableLocations);
+        } else {
+            socket.emit('errorMessage', 'Please choose locations from the map-board.');
+        }
+    });
 
+    socket.on('startGame', () => {
+        const players = getPlayers();
+        if (availableLocations.length === 0) {
+            socket.emit('errorMessage', 'Please choose locations from the map-board.');
+            return;
+        }
+
+        const location = chooseRandomLocation(availableLocations);
         const roles = assignRoles(players, location);
 
-        // Send the role to each player
         players.forEach(player => {
             io.to(player.id).emit('assignedRole', {
                 role: player.role,
@@ -36,10 +51,13 @@ io.on('connection', (socket) => {
     });
 });
 
+function chooseRandomLocation(locations) {
+    const randomIndex = Math.floor(Math.random() * locations.length);
+    return locations[randomIndex].location;
+}
+
 // Implement this function to return the list of connected players
 function getPlayers() {
-    // Placeholder: return an array of connected players
-    // You need to track connected players and their socket IDs
     return Array.from(io.sockets.sockets.values()).map(socket => ({
         id: socket.id,
         socket: socket,
