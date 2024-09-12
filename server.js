@@ -1,6 +1,7 @@
-const express = require('express'); // npm install passport passport-google-oauth20 bcrypt jsonwebtoken express-validator axios dotenv passport-discord express-session
+const express = require('express'); // npm install passport passport-google-oauth20 bcrypt jsonwebtoken express-validator axios dotenv passport-discord express-session mutler
 const http = require('http');
 const socketIo = require('socket.io');
+const multer = require('multer');
 const path = require('path');
 const { body, validationResult } = require('express-validator');
 const axios = require('axios');
@@ -142,7 +143,6 @@ app.get('/auth/google',
 app.get('/auth/google/callback',
     passport.authenticate('google', { failureRedirect: '/login' }),
     (req, res) => {
-        // Successful authentication
         res.redirect('/');
     }
 );
@@ -181,6 +181,92 @@ function authenticateToken(req, res, next) {
         next();
     });
 }
+
+// Profile Settings
+
+// Set storage for profile pictures
+const storage = multer.diskStorage({
+    destination: './uploads/',
+    filename: (req, file, cb) => {
+        cb(null, req.user.username + path.extname(file.originalname));
+    }
+});
+
+// Init multer upload
+const upload = multer({
+    storage: storage,
+    limits: { fileSize: 3000000 }, // Limit size to 1MB
+    fileFilter: (req, file, cb) => {
+        const filetypes = /jpeg|jpg|png/;
+        const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+        const mimetype = filetypes.test(file.mimetype);
+
+        if (mimetype && extname) {
+            return cb(null, true);
+        } else {
+            cb('Error: Images Only!');
+        }
+    }
+}).single('profilePic');
+
+// Route to upload profile picture
+app.post('/profile/upload', (req, res) => {
+    upload(req, res, (err) => {
+        if (err) {
+            return res.status(400).json({ message: err });
+        }
+        // Save the uploaded file's path to the user's profile
+        users[req.user.username].profilePic = `/uploads/${req.file.filename}`;
+        res.json({ message: 'Profile picture updated successfully' });
+    });
+});
+
+app.post('/profile/update', (req, res) => {
+    const { name, status } = req.body;
+
+    if (!name || !status) {
+        return res.status(400).json({ message: 'Name and status are required' });
+    }
+
+    // Update user's profile data
+    users[req.user.username].name = name;
+    users[req.user.username].status = status;
+
+    res.json({ message: 'Profile updated successfully' });
+});
+
+// Fetch user profile data
+app.get('/profile', (req, res) => {
+    const user = users[req.user.username];
+    if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+    }
+    res.json({
+        profilePic: user.profilePic || '/default-avatar.png',
+        name: user.name || req.user.username,
+        status: user.status || 'offline',
+        level: user.level || 1,
+        wins: user.wins || 0
+    });
+});
+
+// Fetch friends list
+app.get('/friends', (req, res) => {
+    const friends = req.user.friends || [];
+
+    const friendProfiles = friends.map(friendUsername => {
+        const friend = users[friendUsername];
+        return {
+            name: friend.name,
+            profilePic: friend.profilePic || '/default-avatar.png',
+            status: friend.status || 'offline',
+            level: friend.level || 1,
+            wins: friend.wins || 0
+        };
+    });
+
+    res.json(friendProfiles);
+});
 
 
 // Game Logic Starts Here

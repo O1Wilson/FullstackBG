@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skibidi Spyfall</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="css/styles.css" rel="stylesheet">
+    <style>
+        .sidebar {
+            min-width: 200px;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar button.active {
+            border: 2px solid #007bff;
+        }
+        .sidebar button {
+            width: 100%;
+            padding: 10px;
+            text-align: left;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            transition: border-color 0.3s;
+        }
+        .sidebar button:hover {
+            border-color: #007bff;
+        }
+        .profile-pic {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .profile-pic:hover .change-pic-overlay {
+            opacity: 1;
+        }
+        .change-pic-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            cursor: pointer;
+        }
+        .status-bubble {
+            background: #f1f1f1;
+            padding: 10px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        .level-wins {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .change-field {
+            margin-bottom: 20px;
+            display: none;
+        }
+        .change-field.active {
+            display: block;
+        }
+        .status {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .status.online .status-indicator {
+            background: green;
+        }
+        .status.offline .status-indicator {
+            background: gray;
+        }
+        .status.idle .status-indicator {
+            background: yellow;
+        }
+        .status.dnd .status-indicator {
+            background: red;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-900">
+<nav class="bg-gray-200 fixed w-full top-0 left-0 shadow-md z-50">
+    <div class="mx-auto">
+        <div class="relative flex h-16 items-center justify-between px-6">
+            <div id="mobile-menu" class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                <!-- Mobile menu button-->
+                <button type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                    <span class="absolute -inset-0.5"></span>
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                    <svg class="sm:hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <!-- Left side -->
+            <div class="flex flex-1 items-center justify-start sm:items-stretch sm:justify-start">
+                <div class="flex flex-shrink-0 items-center">
+                    <img class="h-8 w-auto" src="som icon" alt="SOM">
+                </div>
+                <div class="sm:ml-6 sm:block">
+                    <div class="flex space-x-4">
+                        <a href="#" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Home</a>
+                        <a href="#" class="rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 hover:text-white">Library</a>
+                        <a href="#" class="rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 hover:text-white">Scoreboard</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Middle -->
+            <div class="flex flex-1 justify-start ml-6">
+                <a href="#" class="rounded-md bg-gray-900 px-8 py-2 text-sm font-medium text-white">Lobby</a>
+            </div>
+            <!-- Right side -->
+            <div class="absolute inset-y-0 right-0 flex items-center justify-end pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                <button type="button" class="relative rounded-full p-1 text-gray-400 hover:text-black focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <span class="absolute -inset-1.5"></span>
+                    <span class="sr-only">View notifications</span>
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+                    </svg>
+                </button>
+                <!-- Profile dropdown -->
+                <div class="relative ml-3">
+                    <div>
+                        <button id="profileDropdownButton" type="button" class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                            <span class="absolute -inset-1.5"></span>
+                            <span class="sr-only">Open user menu</span>
+                            <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                        </button>
+                    </div>
+                    <div id="profileDropdownMenu" class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<body class="bg-gray-100 text-gray-900 pt-16">
+    <div class="container mx-auto py-6 flex justify-center">
+        <!-- Sidebar -->
+        <div class="sidebar fixed left-0 top-16 h-full shadow-lg w-48">
+            <button class="active">Profile</button>
+            <button>Settings</button>
+            <button>Community</button>
+        </div>
+
+        <!-- Profile Section -->
+        <div class="ml-16 bg-white shadow-md rounded-lg p-6 flex w-full space-x-6">
+            <!-- Left: Profile Picture and Status -->
+            <div class="bg-white shadow-lg rounded-lg p-6 w-2/5">
+                <div class="profile-pic mx-auto mb-4">
+                    <img src="https://via.placeholder.com/150" alt="Profile Picture" class="rounded-full shadow-md">
+                    <div class="change-pic-overlay">
+                        <span>Change Picture</span>
+                    </div>
+                </div>     
+                <div class="text-center text-xl font-semibold mt-4">John Doe</div>
+                <!-- Status Section in Profile -->
+                <div class="status-section flex justify-center items-center mb-2 relative">
+                    <div id="current-status" class="status online cursor-pointer flex items-center">
+                        <div class="status-indicator"></div>
+                        <span class="ml-2">Online</span>
+                        <i class="ml-2 fas fa-chevron-down"></i>
+                    </div>
+
+                    <!-- Status Dropdown (Initially Hidden) -->
+                    <ul id="status-dropdown" class="absolute left-0 mt-2 bg-white border border-gray-300 rounded shadow-lg hidden z-10 w-40">
+                        <li class="p-2 cursor-pointer hover:bg-gray-100" data-status="online">Online</li>
+                        <li class="p-2 cursor-pointer hover:bg-gray-100" data-status="idle">Idle</li>
+                        <li class="p-2 cursor-pointer hover:bg-gray-100" data-status="dnd">Do Not Disturb</li>
+                        <li class="p-2 cursor-pointer hover:bg-gray-100" data-status="offline">Offline</li>
+                    </ul>
+                </div>
+                <div class="status-bubble text-center">"Currently playing Skibidi Spyfall!"</div>
+                <div class="text-center mt-6">
+                    <div>Level: 12</div>
+                    <div>Wins: 24</div>
+                </div>                
+            </div>
+
+            <!-- Right: Change Name and Status Message -->
+            <div class="right w-3/5 bg-white p-6 rounded-lg">
+                <h2 class="text-xl mb-6">Edit Profile</h2>
+                
+                <!-- Change Name Field -->
+                <div class="change-field mb-4">
+                    <label for="change-name" class="block text-sm font-medium">Change Name</label>
+                    <input type="text" id="change-name" class="block w-full mt-1 p-2 border border-gray-300 rounded bg-gray-200" placeholder="Enter new name">
+                    <button id="save-name" class="mt-2 bg-blue-500 text-white py-2 px-4 rounded">Save</button>
+                </div>
+
+                <!-- Change Status Field -->
+                <div class="change-field mb-4">
+                    <label for="change-status" class="block text-sm font-medium">Change Status Message</label>
+                    <input type="text" id="change-status" class="block w-full mt-1 p-2 border border-gray-300 rounded bg-gray-200" placeholder="Enter new status">
+                    <button id="save-status" class="mt-2 bg-blue-500 text-white py-2 px-4 rounded">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to handle input fields and save button visibility
+        const changeNameInput = document.getElementById('change-name');
+        const saveNameButton = document.getElementById('save-name');
+
+        changeNameInput.addEventListener('input', () => {
+            if (changeNameInput.value.trim() !== '') {
+                saveNameButton.style.display = 'block';
+            } else {
+                saveNameButton.style.display = 'none';
+            }
+        });
+
+        const changeStatusInput = document.getElementById('change-status');
+        const saveStatusButton = document.getElementById('save-status');
+
+        changeStatusInput.addEventListener('input', () => {
+            if (changeStatusInput.value.trim() !== '') {
+                saveStatusButton.style.display = 'block';
+            } else {
+                saveStatusButton.style.display = 'none';
+            }
+        });
+
+        const formData = new FormData();
+        formData.append('profilePic', fileInput.files[0]);
+
+        fetch('/profile/upload', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                // Update the UI with the new profile picture
+            })
+            .catch(err => console.error(err));
+
+        const name = document.getElementById('change-name').value;
+        const status = document.getElementById('change-status').value;
+
+        fetch('/profile/update', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name, status })
+        })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                // Update the UI with the new name and status
+            })
+            .catch(err => console.error(err));
+
+            // Toggle dropdown on status click
+            document.getElementById('current-status').addEventListener('click', () => {
+                const dropdown = document.getElementById('status-dropdown');
+                dropdown.classList.toggle('hidden'); // Toggle the dropdown visibility
+            });
+
+            // Handle status selection
+            document.querySelectorAll('#status-dropdown li').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    const selectedStatus = e.target.getAttribute('data-status');
+
+                    // Update the current status display
+                    const currentStatus = document.getElementById('current-status');
+                    currentStatus.innerHTML = `<div class="status-indicator ${selectedStatus}"></div>
+                                            <span class="ml-2">${capitalizeStatus(selectedStatus)}</span>
+                                            <i class="ml-2 fas fa-chevron-down"></i>`;
+
+                    // Hide the dropdown after selecting a status
+                    document.getElementById('status-dropdown').classList.add('hidden');
+
+                    // Send the selected status to the backend
+                    fetch('/profile/status', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ status: selectedStatus })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Status updated:', data);
+                    })
+                    .catch(err => console.error('Error updating status:', err));
+                });
+            });
+
+            // Helper function to capitalize the status for display
+            function capitalizeStatus(status) {
+                return status.charAt(0).toUpperCase() + status.slice(1);
+            }
+    </script>
+</body>
+</body>
