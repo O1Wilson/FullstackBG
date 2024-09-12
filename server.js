@@ -175,7 +175,7 @@ function authenticateToken(req, res, next) {
     const token = req.headers['authorization'];
     if (!token) return res.sendStatus(401);
 
-    jwt.verify(token, 'your_jwt_secret', (err, user) => {
+    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
         if (err) return res.sendStatus(403);
         req.user = user;
         next();
@@ -275,7 +275,7 @@ let availableLocations = [];
 io.use((socket, next) => {
     const token = socket.handshake.query.token;
     if (token) {
-        jwt.verify(token, 'your_jwt_secret', (err, user) => {
+        jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
             if (err) return next(new Error('Authentication error'));
             socket.user = user;
             next();

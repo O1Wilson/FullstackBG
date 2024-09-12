@@ -1,5 +1,13 @@
 const socket = io();
 
+socket.on('connect', () => {
+    console.log('Connected to the server');
+});
+
+socket.on('message', (message) => {
+    console.log('Message from server:', message);
+});
+
 // Send the selected locations array to the backend
 function sendSelectedLocationsToServer(selectedLocations) {
     socket.emit('setLocations', selectedLocations);
