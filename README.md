@@ -149,25 +149,6 @@ This script provides functionality to manage tags, update item counts, and enfor
 ### 5. **Search Functionality**
    - **`tagSearch`** input enables dynamic searching of tags in the sidebar, filtering visible tags based on the search query.
 
-## How to Use
-
-1. **Add Tags**: 
-   - Click on a tag in the sidebar to add it to the active table.
-   - Adjust the item count using the dropdown in the table.
-
-2. **Remove Tags**:
-   - Click the remove button next to a tag in the table or use the "Remove from table" option in the dropdown menu.
-
-3. **Generate Random Locations**:
-   - Click the "Generate" button to randomly select up to 25 locations based on selected tags.
-
-4. **Search for Tags**:
-   - Use the search bar to filter and find specific tags quickly.
-
-## Customization
-- **MAX_ITEM_COUNT**: Adjust this constant if you wish to change the maximum allowed item count.
-- **Tag Elements**: Tags must be structured with an ID and a count span element (for quantity) to function properly.
-
 ---
 
 # `boardConfigCustomize.js`
